@@ -47,6 +47,7 @@ The system is designed following the **API Gateway Pattern**, **Event-Driven Arc
 | **`payment-service`** | `5003` | Payment processing, gateway webhooks, idempotent transaction handling, and refund orchestration. | Node.js, Prisma, PostgreSQL, Redis |
 | **`search-service`** | `5004` | High-throughput train schedule search, station discovery, and seat availability caching. | Node.js, Prisma, PostgreSQL, Redis |
 | **`notification-service`** | `5005` | Event consumer listening to Kafka topics (`user-registered`, `otp-sent`, `booking-confirmed`) for asynchronous email and SMS delivery. | Node.js, KafkaJS, Nodemailer |
+| **`admin-service`** | `5006` | Administrative management for trains, stations, routes, and auditing. | Node.js, Prisma, PostgreSQL, Redis, Kafka |
 
 ---
 

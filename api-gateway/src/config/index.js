@@ -34,7 +34,8 @@ const config = {
         BOOKING: process.env.BOOKING_SERVICE_URL || "http://localhost:5002",
         PAYMENT: process.env.PAYMENT_SERVICE_URL || "http://localhost:5003",
         SEARCH: process.env.SEARCH_SERVICE_URL || "http://localhost:5004",
-        NOTIFICATION: process.env.NOTIFICATION_SERVICE_URL || "http://localhost:5005"
+        NOTIFICATION: process.env.NOTIFICATION_SERVICE_URL || "http://localhost:5005",
+        ADMIN: process.env.ADMIN_SERVICE_URL || "http://localhost:5006"
     }
 };
 
