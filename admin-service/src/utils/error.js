@@ -34,11 +34,19 @@ class NotFoundError extends AppError {
     }
 }
 
+class ConflictError extends AppError {
+    constructor(message = "Conflict occurred", errors = []) {
+        super(message, 409, errors);
+    }
+}
+
 export {
     AppError,
     BadRequestError,
     UnauthorizedError,
     ForbiddenError,
-    NotFoundError
+    NotFoundError,
+    ConflictError
 };
 export default AppError;
+

@@ -11,6 +11,9 @@ import errorHandler from "./middlewares/error.middleware.js";
 import { prisma, pool } from "./config/prisma.js";
 import { redis } from "./config/redis.js";
 import { connectProducer, disconnectProducer } from "./config/kafka.js";
+import stationRouter from "./routes/station.route.js";
+import trainRouter from "./routes/train.route.js";
+import scheduleRouter from "./routes/schedule.route.js";
 
 const app = express();
 
@@ -29,10 +32,25 @@ app.use(getContext);
 // Request Logging Middleware
 app.use(reqLogger);
 
+// API Routes
+app.use("/api/v1/stations", stationRouter);
+app.use("/api/stations", stationRouter);
+app.use("/stations", stationRouter);
+
+app.use("/api/v1/trains", trainRouter);
+app.use("/api/trains", trainRouter);
+app.use("/trains", trainRouter);
+
+app.use("/api/v1/schedules", scheduleRouter);
+app.use("/api/schedules", scheduleRouter);
+app.use("/schedules", scheduleRouter);
+
 // Root Route
 app.get("/", (req, res) => {
+
     res.status(200).json({
         service: config.SERVICE_NAME,
+
         status: "UP",
         message: `${config.SERVICE_NAME} is healthy and running!`,
         environment: config.NODE_ENV,

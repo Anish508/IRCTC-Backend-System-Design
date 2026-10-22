@@ -48,18 +48,27 @@ export const requireAuth = (req, res, next) => {
  * Enforces that the authenticated user has the 'admin' role.
  */
 export const requireAdmin = (req, res, next) => {
-    const user = req.user;
+    const userId = req.user?.id || req.headers["x-user-id"];
+    const userRole = req.user?.role || req.headers["x-user-role"];
 
-    if (!user || !user.id) {
+    if (!userId) {
         return next(new UnauthorizedError("Access Denied: Missing authenticated user context"));
     }
 
-    if (user.role !== "admin") {
+    if (!req.user) {
+        req.user = {
+            id: userId,
+            role: userRole || "user"
+        };
+    }
+
+    if (req.user.role !== "admin") {
         return next(new ForbiddenError("Forbidden: Administrator privileges required"));
     }
 
     next();
 };
+
 
 export const authMiddleware = requireAuth;
 export default getContext;

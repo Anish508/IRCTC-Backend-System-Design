@@ -11,6 +11,7 @@ const userServiceProxy = createProxy("userService", config.services.USER);
 const bookingServiceProxy = createProxy("bookingService", config.services.BOOKING);
 const searchServiceProxy = createProxy("searchService", config.services.SEARCH);
 const paymentServiceProxy = createProxy("paymentService", config.services.PAYMENT);
+const adminServiceProxy = createProxy("adminService", config.services.ADMIN);
 
 // -------------------------------------------------------------
 // Gateway Health & Circuit Breaker Monitoring
@@ -62,4 +63,8 @@ router.use("/search", searchServiceProxy);
 router.post("/payments/webhook", paymentServiceProxy);
 router.use("/payments", authMiddleware(), paymentServiceProxy);
 
+// Admin routes require authentication (attaches x-user-id & x-user-role)
+router.use("/admin", authMiddleware(), adminServiceProxy);
+
 export default router;
+

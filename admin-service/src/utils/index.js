@@ -4,7 +4,8 @@ import {
     BadRequestError,
     UnauthorizedError,
     ForbiddenError,
-    NotFoundError
+    NotFoundError,
+    ConflictError
 } from "./error.js";
 import logger from "../config/logger.js";
 
@@ -15,6 +16,7 @@ export {
     UnauthorizedError,
     ForbiddenError,
     NotFoundError,
+    ConflictError,
     logger
 };
 
@@ -25,5 +27,7 @@ export default {
     UnauthorizedError,
     ForbiddenError,
     NotFoundError,
+    ConflictError,
     logger
 };
+
